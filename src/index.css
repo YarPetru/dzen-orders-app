@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@200;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    font-family: inherit;
+  }
+
+  html {
+    @apply box-border scroll-smooth;
+  }
+
+  body {
+    @apply font-NotoSans leading-normal text-sm text-black;
+  }
+
+  h1 {
+    @apply text-xl text-blue-dark;
+  }
+
+  h2 {
+    @apply text-lg text-grey-dark text-center;
+  }
+
+  h3 {
+    @apply text-md text-black;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-5 py-2 text-white bg-blue-sky shadow-lg rounded-lg hover:bg-blue-main hover:shadow-md active:shadow-none disabled:bg-grey-main disabled:text-grey-light disabled:shadow-none transition-all;
+  }
+
+  .section {
+    @apply p-8 bg-grey-light rounded-md shadow-md;
+  }
+
+  .rounded-button {
+    @apply w-8 h-8 flex items-center justify-center rounded-full border border-transparent shadow-md text-grey-main hover:shadow-sm hover:text-grey-dark active:shadow-none transition-all;
+  }
+
+  .error-validation {
+    @apply text-xs text-blue-main ml-3;
+  }
+
+  .text-input {
+    @apply px-3 py-2 text-sm text-black outline-none rounded placeholder:font-extralight;
+  }
+}
+
+@layer utilities {
+}
