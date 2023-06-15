@@ -1,7 +1,12 @@
-import React from "react";
+import React from 'react';
+import ProductItem from 'components/product-components/ProductItem';
 
 const ProductsPage: React.FC = () => {
-  return <div>ProductsPage</div>;
+  return (
+    <>
+      <ProductItem />
+    </>
+  );
 };
 
 export default ProductsPage;

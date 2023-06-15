@@ -1,9 +1,14 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/toolkit';
+import { ordersReducer } from './orders';
+import { productsReducer } from './products';
+
+const rootReducer = combineReducers({
+  orders: ordersReducer,
+  products: productsReducer,
+});
 
 export const store = configureStore({
-  reducer: {
-    // counter: counterReducer,
-  },
+  reducer: rootReducer,
 });
 
 export type AppDispatch = typeof store.dispatch;

@@ -7,7 +7,7 @@ module.exports = {
   ],
   theme: {
     screens: {
-      desktop: '1440px',
+      desktop: '1200px',
     },
     container: {
       center: true,
@@ -19,28 +19,27 @@ module.exports = {
       xs: ['14px', { fontWeight: '400' }],
       sm: ['20px', { fontWeight: '400' }],
       md: ['24px', { fontWeight: '500' }],
-      lg: ['56px', { fontWeight: '200' }],
+      lg: ['32px', { fontWeight: '400', lineHeight: '1' }],
       xl: ['56px', { fontWeight: '700' }],
     },
     colors: {
       transparent: 'transparent',
-      white: '#fff',
-      black: '#141a1f',
-      blue: {
-        main: '#64829B',
-        dark: '#28343e',
-        sky: '#a0c4dc',
-        'sky-70': '#a0c4dcb3',
-        'sky-80': '#a0c4dccc',
+      white: '#FEF9F3',
+      black: '#201C1B',
+      // black: '#141413',
+      accent: {
+        main: '#2E7758',
+        dark: '#1c4735',
+        light: '#82ad9b',
       },
       grey: {
-        light: '#F6F4F5',
-        main: '#C5BAA9',
-        dark: '#9e9587',
+        light: '#e6e4e1',
+        main: '#cdc8c2',
+        dark: '#7b7874',
       },
-      olive: {
-        main: '#686C33',
-        light: '#777b47',
+      biege: {
+        main: '#E8D9CA',
+        light: '#f8f4ef',
       },
     },
     extend: {
@@ -49,9 +48,6 @@ module.exports = {
       },
       transitionDuration: {
         DEFAULT: '333ms',
-      },
-      backgroundImage: {
-        menu: "url('images/menu.jpg')",
       },
     },
   },

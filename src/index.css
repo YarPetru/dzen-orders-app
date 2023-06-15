@@ -20,7 +20,7 @@
   }
 
   h1 {
-    @apply text-xl text-blue-dark;
+    @apply text-xl text-accent-dark;
   }
 
   h2 {
@@ -30,19 +30,31 @@
   h3 {
     @apply text-md text-black;
   }
+
+  h4 {
+    @apply text-lg text-black;
+  }
 }
 
 @layer components {
-  .btn {
+  /* .btn {
     @apply px-5 py-2 text-white bg-blue-sky shadow-lg rounded-lg hover:bg-blue-main hover:shadow-md active:shadow-none disabled:bg-grey-main disabled:text-grey-light disabled:shadow-none transition-all;
+  } */
+
+  .item {
+    @apply w-full p-4 flex items-center justify-between gap-4 shadow-md;
   }
 
   .section {
     @apply p-8 bg-grey-light rounded-md shadow-md;
   }
 
+  .subparagraph {
+    @apply text-xs text-grey-dark;
+  }
+
   .rounded-button {
-    @apply w-8 h-8 flex items-center justify-center rounded-full border border-transparent shadow-md text-grey-main hover:shadow-sm hover:text-grey-dark active:shadow-none transition-all;
+    @apply w-12 h-12 flex items-center justify-center border border-grey-main rounded-full hover:border-accent-light transition-all text-grey-dark hover:text-accent-main;
   }
 
   .error-validation {
