@@ -12,12 +12,12 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <IconContext.Provider value={{ size: '40px' }}>
-      <Provider store={store}>
-        <BrowserRouter basename="/">
+    <Provider store={store}>
+      <BrowserRouter basename="/">
+        <IconContext.Provider value={{ size: '40px' }}>
           <App />
-        </BrowserRouter>
-      </Provider>
-    </IconContext.Provider>
+        </IconContext.Provider>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );

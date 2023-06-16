@@ -1,10 +1,10 @@
 import React from 'react';
-import ProductItem from 'components/product-components/ProductItem';
+import ProductList from 'components/product-components/ProductList';
 
 const ProductsPage: React.FC = () => {
   return (
     <>
-      <ProductItem />
+      <ProductList />
     </>
   );
 };

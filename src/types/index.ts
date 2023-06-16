@@ -1,4 +1,4 @@
-interface IPrice {
+export interface IPrice {
   value: number;
   symbol: 'USD' | 'UAH';
   isDefault: 0 | 1;
@@ -8,6 +8,7 @@ export interface IProduct {
   id: number;
   serialNumber: number;
   isNew: 1 | 0;
+  isAvailable: 1 | 0;
   photo: string;
   title: string;
   type: string;
@@ -16,7 +17,7 @@ export interface IProduct {
     start: Date;
     end: Date;
   };
-  price: IPrice[];
+  price: [IPrice, IPrice];
   order: number; //one of ids of the orders
   date: Date;
 }

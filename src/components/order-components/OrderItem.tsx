@@ -3,20 +3,25 @@ import classNames from 'classnames';
 
 import { HiOutlineClipboardList, HiOutlineTrash, HiChevronRight } from 'react-icons/hi';
 import RoundedButton from 'components/common/RoundedButton';
+import DateBlock from 'components/common/DateBlock';
+import { IOrder } from 'types';
 
 interface IOrderItem {
+  order: IOrder;
   isOpenDetails: boolean;
   onClick: () => void;
 }
 
-const OrderItem: React.FC<IOrderItem> = ({ isOpenDetails = false, onClick }) => {
-  const itemWrapperClasses = classNames('item cursor-pointer  hover:shadow-xl transition-all', {
+const OrderItem: React.FC<IOrderItem> = ({ isOpenDetails = false, order, onClick }) => {
+  const itemWrapperClasses = classNames('item cursor-pointer hover:shadow-xl transition-all', {
     'justify-start relative': isOpenDetails,
   });
 
+  const date = new Date(order.date);
+
   return (
-    <div className={itemWrapperClasses} onClick={onClick}>
-      {!isOpenDetails && <h3 className="basis-1/4">Long long very long Title</h3>}
+    <li className={itemWrapperClasses} onClick={onClick}>
+      {!isOpenDetails && <h3 className="basis-1/4">{order.title}</h3>}
       <div className="flex items-center gap-2">
         <RoundedButton>
           <HiOutlineClipboardList size={32} />
@@ -27,10 +32,7 @@ const OrderItem: React.FC<IOrderItem> = ({ isOpenDetails = false, onClick }) => 
         </div>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <p className="subparagraph">Date</p>
-        <p>Date</p>
-      </div>
+      <DateBlock date={date} />
 
       {!isOpenDetails && (
         <div className="flex flex-col gap-2">
@@ -50,7 +52,7 @@ const OrderItem: React.FC<IOrderItem> = ({ isOpenDetails = false, onClick }) => 
           <HiChevronRight />
         </div>
       )}
-    </div>
+    </li>
   );
 };
 

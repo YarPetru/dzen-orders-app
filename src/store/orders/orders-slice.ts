@@ -6,17 +6,23 @@ interface OrdersState {
   data: IOrder[];
   isLoading: boolean;
   error: string | null;
+  currenOrder: IOrder | null;
 }
 const initialState: OrdersState = {
   data: [],
   isLoading: false,
   error: null,
+  currenOrder: null,
 };
 
 const ordersSlice = createSlice({
   name: 'orders',
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentOrder: (state, action: PayloadAction<IOrder | null>) => {
+      state.currenOrder = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(fetchOrders.pending, state => {
       state.isLoading = true;
@@ -32,5 +38,7 @@ const ordersSlice = createSlice({
     });
   },
 });
+
+export const { setCurrentOrder } = ordersSlice.actions;
 
 export default ordersSlice.reducer;
