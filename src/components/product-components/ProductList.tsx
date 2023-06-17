@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import ProductItem from './ProductItem';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { fetchProducts, getProducts } from 'store/products';
+import ProductFilter from './ProductFilter';
 
 interface IProductList {
   orderID?: number;
@@ -13,14 +14,26 @@ const ProductList: React.FC<IProductList> = ({ isForDetails, orderID }) => {
   const listWrapperClasses = classNames('w-full', {});
   const listClasses = classNames('w-full flex flex-col gap-6', {});
 
+  const [currentType, setCurrentType] = useState<string>('');
+
   const dispatch = useAppDispatch();
   const { data: products, isLoading, error } = useAppSelector(getProducts);
 
-  const filteredProducts = !!orderID ? products.filter(prod => prod.order === orderID) : products;
+  const filteredProducts = products.filter(prod => {
+    if (!!orderID && prod.order !== orderID) {
+      return false;
+    }
+    if (!!currentType && prod.type !== currentType) {
+      return false;
+    }
+    return true;
+  });
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+  const typesArray = products
+    .filter((prod, index, array) => {
+      return array.findIndex(p => p.type === prod.type) === index;
+    })
+    .map(prod => prod.type);
 
   let renderedProducts;
 
@@ -32,23 +45,31 @@ const ProductList: React.FC<IProductList> = ({ isForDetails, orderID }) => {
     renderedProducts =
       filteredProducts.length > 0 ? (
         filteredProducts?.map(product => (
-          <ProductItem
-            product={product}
-            isShort={isForDetails}
-            key={product.id}
-            // order={order}
-            // onClick={() => onOrderClick(order)}
-            // isOpenDetails={openDetails}
-          />
+          <ProductItem product={product} isShort={isForDetails} key={product.id} />
         ))
       ) : (
         <h3>This order is empty. You can delete it or add a product</h3>
       );
   }
 
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
   return (
-    <div className={listWrapperClasses}>
-      <ul className={listClasses}>{renderedProducts}</ul>
+    <div className="w-full flex-col-start gap-6 ">
+      {!isForDetails && (
+        <ProductFilter
+          totalQuantity={filteredProducts.length}
+          types={typesArray}
+          currentType={currentType}
+          setCurrentType={setCurrentType}
+        />
+      )}
+
+      <div className={listWrapperClasses}>
+        <ul className={listClasses}>{renderedProducts}</ul>
+      </div>
     </div>
   );
 };

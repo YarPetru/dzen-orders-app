@@ -67,4 +67,11 @@
 }
 
 @layer utilities {
+  .flex-row-aligned {
+    @apply flex items-center;
+  }
+
+  .flex-col-start {
+    @apply flex flex-col items-start;
+  }
 }

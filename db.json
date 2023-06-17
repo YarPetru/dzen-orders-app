@@ -44,6 +44,26 @@
       "id": 2,
       "serialNumber": 1234,
       "isNew": 1,
+      "isAvailable": 1,
+      "photo": "https://lh3.googleusercontent.com/K2eZJfN38UhdHKIxUixTnFbFeJvyP_VQRh4hsK3qnVND6XGMFzq4N_TD-FOxnLwkYGePW4k5TlDGpEWzq5tJrggYK7eRdlD7svEBxBK7UfYGwVNo4w=e365-rw",
+      "title": "Product 3",
+      "type": "Laptops",
+      "specification": "Specification 18",
+      "guarantee": {
+        "start": "2017-06-29 12:09:33",
+        "end": "2017-06-29 12:09:33"
+      },
+      "price": [
+        { "value": 400, "symbol": "USD", "isDefault": 0 },
+        { "value": 10400, "symbol": "UAH", "isDefault": 1 }
+      ],
+      "order": 2,
+      "date": "2017-06-29 12:09:33"
+    },
+    {
+      "id": 3,
+      "serialNumber": 222333111,
+      "isNew": 1,
       "isAvailable": 0,
       "photo": "https://img.freepik.com/free-photo/computer_1205-717.jpg",
       "title": "Product 2",

@@ -7,7 +7,7 @@ interface IContainer {
 }
 
 const Container: React.FC<IContainer> = ({ children, className }) => {
-  const classes = classNames(`container flex justify-between ${className}`);
+  const classes = classNames(`container ${className}`);
 
   return <div className={classes}>{children}</div>;
 };

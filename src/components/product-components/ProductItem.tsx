@@ -22,10 +22,10 @@ const ProductItem: React.FC<IProductItem> = ({ product, isShort }) => {
   const endDate = new Date(product.guarantee.end);
 
   return (
-    <div className="item text-xs">
+    <div className="item text-xs hover:shadow-lg transition-all">
       <div className={indicatorClasses}></div>
 
-      <img src={product.photo} alt="product cover" className="h-12" />
+      <img src={product.photo} alt="product cover" className="h-12 w-16 object-cover" />
 
       <div className="flex flex-col gap-0">
         <h3>{product.title}</h3>
