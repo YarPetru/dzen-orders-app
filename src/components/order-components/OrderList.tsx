@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-
-import OrderItem from './OrderItem';
-import OrderDetails from './OrderDetails';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { fetchOrders, getCurrentOrder, getOrders } from 'store/orders';
-import { IOrder } from 'types';
 import { setCurrentOrder } from 'store/orders/orders-slice';
+import OrderItem from './OrderItem';
+import OrderDetails from './OrderDetails';
+import { Skeleton } from 'components/common';
+import { IOrder } from 'types';
 
 const OrderList: React.FC = () => {
   const [openDetails, setOpenDetails] = useState<boolean>(false);
@@ -42,7 +42,7 @@ const OrderList: React.FC = () => {
   let renderedOrders;
 
   if (isLoading) {
-    renderedOrders = <h2>Loading...</h2>;
+    renderedOrders = <Skeleton times={3} flexCol className="h-[94px] w-full" />;
   } else if (error) {
     renderedOrders = <h2>Something went wrong...{error}</h2>;
   } else if (orders) {

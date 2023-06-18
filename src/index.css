@@ -37,12 +37,12 @@
 }
 
 @layer components {
-  /* .btn {
-    @apply px-5 py-2 text-white bg-blue-sky shadow-lg rounded-lg hover:bg-blue-main hover:shadow-md active:shadow-none disabled:bg-grey-main disabled:text-grey-light disabled:shadow-none transition-all;
-  } */
+  .nav-link {
+    @apply uppercase text-center px-4 py-1 border-b-4 border-transparent hover:border-accent-main transition-all;
+  }
 
   .item {
-    @apply w-full p-4 flex items-center justify-between gap-4 shadow-md;
+    @apply w-full p-4 flex items-center justify-between gap-4 shadow-md rounded-md;
   }
 
   .section {

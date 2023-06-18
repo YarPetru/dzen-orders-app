@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-import RoundedButton from 'components/common/RoundedButton';
 import { HiX, HiPlusCircle } from 'react-icons/hi';
+import { RoundedButton } from 'components/common';
+import { ProductList } from 'components/product-components';
 import { IOrder } from 'types';
-import ProductList from 'components/product-components/ProductList';
 
 interface IOrderDetails {
   order: IOrder | null;

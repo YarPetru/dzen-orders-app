@@ -1,5 +1,5 @@
 import React from 'react';
-import { getFormattedDate } from 'helpers/get-formatted-date';
+import { getFormattedDate } from 'helpers';
 
 interface IDateBlock {
   date: Date;

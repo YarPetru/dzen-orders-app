@@ -1,6 +1,5 @@
 import React from 'react';
 import Container from './Containter';
-// import SessionsCounter from 'components/common/SessionsCounter';
 import CurrentTime from './CurrentTime';
 
 const TopMenu: React.FC = () => {
@@ -9,7 +8,6 @@ const TopMenu: React.FC = () => {
       <Container className="flex justify-between items-center">
         <h2 className="text-accent-main font-semibold">Inventory</h2>
         <CurrentTime />
-        {/* <SessionsCounter /> */}
       </Container>
     </header>
   );

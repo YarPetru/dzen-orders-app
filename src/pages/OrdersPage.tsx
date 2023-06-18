@@ -1,6 +1,5 @@
 import React from 'react';
-
-import OrderList from 'components/order-components/OrderList';
+import { OrderList } from 'components/order-components';
 
 const OrdersPage: React.FC = () => {
   return (

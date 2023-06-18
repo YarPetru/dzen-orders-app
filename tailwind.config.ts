@@ -49,6 +49,14 @@ module.exports = {
       transitionDuration: {
         DEFAULT: '333ms',
       },
+      keyframes: {
+        shimmer: {
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      animation: {
+        shimmer: 'shimmer 1.2s infinite',
+      },
     },
   },
   plugins: [],

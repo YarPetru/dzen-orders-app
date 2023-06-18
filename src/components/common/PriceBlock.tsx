@@ -1,4 +1,4 @@
-import { getFormattedCost } from 'helpers/get-formatted-cost';
+import { getFormattedCost } from 'helpers';
 import React from 'react';
 import { IPrice } from 'types';
 

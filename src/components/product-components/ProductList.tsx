@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
-import ProductItem from './ProductItem';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { fetchProducts, getProducts } from 'store/products';
 import ProductFilter from './ProductFilter';
+import ProductItem from './ProductItem';
+import { Skeleton } from 'components/common';
 
 interface IProductList {
   orderID?: number;
@@ -38,7 +39,7 @@ const ProductList: React.FC<IProductList> = ({ isForDetails, orderID }) => {
   let renderedProducts;
 
   if (isLoading) {
-    renderedProducts = <h2>Loading...</h2>;
+    renderedProducts = <Skeleton times={5} flexCol className="h-[89px] w-full" />;
   } else if (error) {
     renderedProducts = <h2>Something went wrong...{error}</h2>;
   } else if (products) {

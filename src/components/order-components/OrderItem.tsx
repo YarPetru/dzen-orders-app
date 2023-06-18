@@ -1,9 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-
 import { HiOutlineClipboardList, HiOutlineTrash, HiChevronRight } from 'react-icons/hi';
-import RoundedButton from 'components/common/RoundedButton';
-import DateBlock from 'components/common/DateBlock';
+import { RoundedButton, DateBlock } from 'components/common';
 import { IOrder } from 'types';
 
 interface IOrderItem {

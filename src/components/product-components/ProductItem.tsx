@@ -1,10 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 import { HiTrash } from 'react-icons/hi';
+import { getFormattedDate } from 'helpers';
+import { DateBlock, PriceBlock } from 'components/common';
 import { IProduct } from 'types';
-import DateBlock from 'components/common/DateBlock';
-import PriceBlock from 'components/common/PriceBlock';
-import { getFormattedDate } from 'helpers/get-formatted-date';
 
 interface IProductItem {
   product: IProduct;
