@@ -3,14 +3,15 @@ import React from 'react';
 import { IPrice } from 'types';
 
 interface IPriceBlock {
-  price: [IPrice, IPrice];
+  priceUsd: IPrice;
+  priceUah: IPrice;
 }
 
-const PriceBlock: React.FC<IPriceBlock> = ({ price }) => {
+const PriceBlock: React.FC<IPriceBlock> = ({ priceUsd, priceUah }) => {
   return (
     <div className="flex flex-col gap-2">
-      <p className="subparagraph">{getFormattedCost(price[0])}</p>
-      <p>{getFormattedCost(price[1])}</p>
+      <p className="subparagraph">{getFormattedCost(priceUsd)}</p>
+      <p>{getFormattedCost(priceUah)}</p>
     </div>
   );
 };

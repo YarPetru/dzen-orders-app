@@ -1,15 +1,24 @@
-import React, { lazy, Suspense } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Route, Routes, Navigate } from 'react-router';
 // import BeatLoader from 'react-spinners/BeatLoader';
 // import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
+import { fetchProducts } from 'store/products';
+import { fetchOrders } from 'store/orders';
 import { Layout } from 'components/layout';
+import { useAppDispatch } from 'hooks';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const OrdersPage = lazy(() => import('./pages/OrdersPage'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
 
 const App: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchOrders());
+    dispatch(fetchProducts());
+  }, [dispatch]);
   return (
     <>
       <Suspense fallback={<h2>LOADING...</h2>}>

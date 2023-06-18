@@ -1,16 +1,26 @@
 import React from 'react';
 import classNames from 'classnames';
 import { HiOutlineClipboardList, HiOutlineTrash, HiChevronRight } from 'react-icons/hi';
-import { RoundedButton, DateBlock } from 'components/common';
-import { IOrder } from 'types';
+import { RoundedButton, DateBlock, PriceBlock } from 'components/common';
+import { IOrder, IPrice } from 'types';
 
 interface IOrderItem {
   order: IOrder;
+  productAmount: number;
+  totalUsd: IPrice;
+  totalUah: IPrice;
   isOpenDetails: boolean;
   onClick: () => void;
 }
 
-const OrderItem: React.FC<IOrderItem> = ({ isOpenDetails = false, order, onClick }) => {
+const OrderItem: React.FC<IOrderItem> = ({
+  isOpenDetails = false,
+  order,
+  productAmount,
+  totalUsd,
+  totalUah,
+  onClick,
+}) => {
   const itemWrapperClasses = classNames('item cursor-pointer hover:shadow-xl transition-all', {
     'justify-start relative': isOpenDetails,
   });
@@ -25,7 +35,7 @@ const OrderItem: React.FC<IOrderItem> = ({ isOpenDetails = false, order, onClick
           <HiOutlineClipboardList size={32} />
         </RoundedButton>
         <div className="flex flex-col gap-0">
-          <h4>23</h4>
+          <h4>{productAmount}</h4>
           <p className="text-grey-dark">Products</p>
         </div>
       </div>
@@ -33,10 +43,11 @@ const OrderItem: React.FC<IOrderItem> = ({ isOpenDetails = false, order, onClick
       <DateBlock date={date} />
 
       {!isOpenDetails && (
-        <div className="flex flex-col gap-2">
-          <p className="subparagraph">Cost</p>
-          <p>Cost</p>
-        </div>
+        <PriceBlock priceUsd={totalUsd} priceUah={totalUah} />
+        // <div className="flex flex-col gap-2">
+        //   <p className="subparagraph">Cost</p>
+        //   <p>Cost</p>
+        // </div>
       )}
 
       {!isOpenDetails && (

@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
-import { fetchOrders, getCurrentOrder, getOrders } from 'store/orders';
+import { getCurrentOrder, getOrders } from 'store/orders';
+import { getProducts } from 'store/products';
 import { setCurrentOrder } from 'store/orders/orders-slice';
 import OrderItem from './OrderItem';
 import OrderDetails from './OrderDetails';
 import { Skeleton } from 'components/common';
 import { IOrder } from 'types';
+import { calculateTotal } from 'helpers';
 
 const OrderList: React.FC = () => {
   const [openDetails, setOpenDetails] = useState<boolean>(false);
@@ -18,11 +20,9 @@ const OrderList: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const { data: orders, isLoading, error } = useAppSelector(getOrders);
-  const currentOrder = useAppSelector(getCurrentOrder);
+  const { data: products } = useAppSelector(getProducts);
 
-  useEffect(() => {
-    dispatch(fetchOrders());
-  }, [dispatch]);
+  const currentOrder = useAppSelector(getCurrentOrder);
 
   const onOrderClick = (current: IOrder) => {
     if (openDetails) {
@@ -39,6 +39,10 @@ const OrderList: React.FC = () => {
     dispatch(setCurrentOrder(null));
   };
 
+  const totalProductAmount = (order: IOrder) => {
+    return products.reduce((amount, prod) => (prod.order === order.id ? (amount += 1) : amount), 0);
+  };
+
   let renderedOrders;
 
   if (isLoading) {
@@ -50,6 +54,9 @@ const OrderList: React.FC = () => {
       <OrderItem
         key={order.id}
         order={order}
+        productAmount={totalProductAmount(order)}
+        totalUsd={calculateTotal(products, order, 'USD')}
+        totalUah={calculateTotal(products, order, 'UAH')}
         onClick={() => onOrderClick(order)}
         isOpenDetails={openDetails}
       />

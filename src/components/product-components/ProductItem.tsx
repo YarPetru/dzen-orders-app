@@ -50,7 +50,7 @@ const ProductItem: React.FC<IProductItem> = ({ product, isShort }) => {
               <p>{getFormattedDate(endDate, 'isGuarantee')}</p>
             </div>
           </div>
-          <PriceBlock price={product.price} />
+          <PriceBlock priceUsd={product.price[0]} priceUah={product.price[1]} />
           <p>Group title</p>
           <p>Author title</p>
           <p>Order title</p>

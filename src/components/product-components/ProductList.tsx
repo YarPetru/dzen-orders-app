@@ -40,7 +40,7 @@ const ProductList: React.FC<IProductList> = ({ isForDetails, orderID }) => {
 
   if (isLoading) {
     renderedProducts = <Skeleton times={5} flexCol className="h-[89px] w-full" />;
-  } else if (error) {
+} else if (error) {
     renderedProducts = <h2>Something went wrong...{error}</h2>;
   } else if (products) {
     renderedProducts =
