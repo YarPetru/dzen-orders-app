@@ -1,7 +1,12 @@
-import React from "react";
+import React from 'react';
+import { OrderList } from 'components/order-components';
 
 const OrdersPage: React.FC = () => {
-  return <div>OrdersPage</div>;
+  return (
+    <>
+      <OrderList />
+    </>
+  );
 };
 
 export default OrdersPage;
