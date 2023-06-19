@@ -1,10 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
-import { HiX, HiPlusCircle } from 'react-icons/hi';
+import { HiX } from 'react-icons/hi';
 import { Button } from 'components/common';
 import { ProductList } from 'components/product-components';
 import { IOrder } from 'types';
-import AddButton from 'components/common/AddButton';
+import { AddButton } from 'components/common';
 
 interface IOrderDetails {
   order: IOrder | null;

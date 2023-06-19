@@ -14,7 +14,7 @@ const Skeleton: React.FC<ISkeleton> = ({ flexCol = false, isStatic = false, time
   });
   const outerClasses = classNames(`relative overflow-hidden bg-grey-light rounded-md ${className}`);
   const innerClasses = classNames(
-    `absolute inset-0 -translate-x-full bg-gradient-to-r from-grey-light via-white to-grey-light z-40`,
+    `absolute inset-0 -translate-x-full bg-gradient-to-r from-biege-light via-white to-grey-light z-40`,
     { 'animate-shimmer ': !isStatic }
   );
 

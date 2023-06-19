@@ -26,7 +26,6 @@ module.exports = {
       transparent: 'transparent',
       white: '#FFF',
       black: '#201C1B',
-      // black: '#141413',
       accent: {
         main: '#2E7758',
         dark: '#1c4735',
