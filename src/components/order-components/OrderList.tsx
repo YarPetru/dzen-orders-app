@@ -24,8 +24,6 @@ const OrderList: React.FC = () => {
   const dispatch = useAppDispatch();
   const { data: orders, isLoading, error } = useAppSelector(getOrders);
   const { data: products } = useAppSelector(getProducts);
-  console.log(orders);
-  console.log(products);
 
   const currentOrder = useAppSelector(getCurrentOrder);
 
