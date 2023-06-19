@@ -23,7 +23,7 @@
     {
       "id": 1,
       "serialNumber": 1234,
-      "isNew": 1,
+      "isNewProduct": 1,
       "isAvailable": 1,
       "photo": "https://img.freepik.com/free-photo/computer_1205-717.jpg",
       "title": "Product 1",
@@ -43,7 +43,7 @@
     {
       "id": 2,
       "serialNumber": 1234,
-      "isNew": 1,
+      "isNewProduct": 1,
       "isAvailable": 1,
       "photo": "https://lh3.googleusercontent.com/K2eZJfN38UhdHKIxUixTnFbFeJvyP_VQRh4hsK3qnVND6XGMFzq4N_TD-FOxnLwkYGePW4k5TlDGpEWzq5tJrggYK7eRdlD7svEBxBK7UfYGwVNo4w=e365-rw",
       "title": "Product 3",
@@ -63,7 +63,7 @@
     {
       "id": 3,
       "serialNumber": 222333111,
-      "isNew": 1,
+      "isNewProduct": 1,
       "isAvailable": 0,
       "photo": "https://img.freepik.com/free-photo/computer_1205-717.jpg",
       "title": "Product 2",

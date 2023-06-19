@@ -24,6 +24,8 @@ const OrderList: React.FC = () => {
   const dispatch = useAppDispatch();
   const { data: orders, isLoading, error } = useAppSelector(getOrders);
   const { data: products } = useAppSelector(getProducts);
+  console.log(orders);
+  console.log(products);
 
   const currentOrder = useAppSelector(getCurrentOrder);
 
@@ -66,7 +68,7 @@ const OrderList: React.FC = () => {
   } else if (orders) {
     renderedOrders = orders?.map(order => (
       <OrderItem
-        key={order.id}
+        key={order._id}
         order={order}
         productAmount={totalProductAmount(products, order)}
         totalUsd={calculateTotal(products, order, 'USD')}

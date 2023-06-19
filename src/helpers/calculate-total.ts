@@ -2,7 +2,7 @@ import { IProduct, IOrder } from 'types';
 
 export const calculateTotal = (products: IProduct[], order: IOrder, symbol: 'USD' | 'UAH') => {
   return products
-    .filter(prod => prod.order === order.id)
+    .filter(prod => prod.order === order._id)
     .reduce(
       (total, prod) => {
         const price = prod.price.find(p => p.symbol === symbol);
@@ -16,5 +16,5 @@ export const calculateTotal = (products: IProduct[], order: IOrder, symbol: 'USD
 };
 
 export const totalProductAmount = (products: IProduct[], order: IOrder) => {
-  return products.reduce((amount, prod) => (prod.order === order.id ? (amount += 1) : amount), 0);
+  return products.reduce((amount, prod) => (prod.order === order._id ? (amount += 1) : amount), 0);
 };

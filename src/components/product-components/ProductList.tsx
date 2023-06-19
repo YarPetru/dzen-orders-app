@@ -8,7 +8,7 @@ import { Skeleton, Modal, Button } from 'components/common';
 import { IProduct } from 'types';
 
 interface IProductList {
-  orderID?: number;
+  orderID?: string;
   isForDetails?: boolean;
 }
 
@@ -63,7 +63,7 @@ const ProductList: React.FC<IProductList> = ({ isForDetails, orderID }) => {
       filteredProducts.length > 0 ? (
         filteredProducts?.map(product => (
           <ProductItem
-            key={product.id}
+            key={product._id}
             product={product}
             isShort={isForDetails}
             handleDeleteProduct={() => handleDeleteProduct(product)}
