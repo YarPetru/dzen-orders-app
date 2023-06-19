@@ -1,7 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 import { HiOutlineClipboardList, HiOutlineTrash, HiChevronRight } from 'react-icons/hi';
-import { RoundedButton, DateBlock, PriceBlock } from 'components/common';
+import { getCurrentOrder } from 'store/orders';
+import { useAppSelector } from 'hooks';
+import { Button, DateBlock, PriceBlock } from 'components/common';
 import { IOrder, IPrice } from 'types';
 
 interface IOrderItem {
@@ -10,7 +12,8 @@ interface IOrderItem {
   totalUsd: IPrice;
   totalUah: IPrice;
   isOpenDetails: boolean;
-  onClick: () => void;
+  handleOpenDetails: () => void;
+  handleDeleteOrder: () => void;
 }
 
 const OrderItem: React.FC<IOrderItem> = ({
@@ -19,21 +22,24 @@ const OrderItem: React.FC<IOrderItem> = ({
   productAmount,
   totalUsd,
   totalUah,
-  onClick,
+  handleOpenDetails,
+  handleDeleteOrder,
 }) => {
-  const itemWrapperClasses = classNames('item cursor-pointer hover:shadow-xl transition-all', {
+  const itemWrapperClasses = classNames('item hover:shadow-xl transition-all', {
     'justify-start relative': isOpenDetails,
   });
+
+  const currentOrder = useAppSelector(getCurrentOrder);
 
   const date = new Date(order.date);
 
   return (
-    <li className={itemWrapperClasses} onClick={onClick}>
+    <li className={itemWrapperClasses}>
       {!isOpenDetails && <h3 className="basis-1/4">{order.title}</h3>}
       <div className="flex items-center gap-2">
-        <RoundedButton>
+        <Button isRounded onClick={handleOpenDetails}>
           <HiOutlineClipboardList size={32} />
-        </RoundedButton>
+        </Button>
         <div className="flex flex-col gap-0">
           <h4>{productAmount}</h4>
           <p className="text-grey-dark">Products</p>
@@ -42,22 +48,19 @@ const OrderItem: React.FC<IOrderItem> = ({
 
       <DateBlock date={date} />
 
-      {!isOpenDetails && (
-        <PriceBlock priceUsd={totalUsd} priceUah={totalUah} />
-        // <div className="flex flex-col gap-2">
-        //   <p className="subparagraph">Cost</p>
-        //   <p>Cost</p>
-        // </div>
-      )}
+      {!isOpenDetails && <PriceBlock priceUsd={totalUsd} priceUah={totalUah} />}
 
       {!isOpenDetails && (
-        <RoundedButton>
+        <Button isRounded onClick={handleDeleteOrder}>
           <HiOutlineTrash size={32} />
-        </RoundedButton>
+        </Button>
       )}
 
-      {isOpenDetails && (
-        <div className="absolute right-0 top-0  h-full  flex items-center justify-center bg-biege-main text-white">
+      {isOpenDetails && currentOrder?.id === order.id && (
+        <div
+          onClick={handleOpenDetails}
+          className="absolute right-0 top-0 h-full flex items-center justify-center cursor-pointer bg-biege-main text-white hover:bg-grey-main transition-all"
+        >
           <HiChevronRight />
         </div>
       )}

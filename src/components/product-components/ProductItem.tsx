@@ -2,15 +2,16 @@ import React from 'react';
 import classNames from 'classnames';
 import { HiTrash } from 'react-icons/hi';
 import { getFormattedDate } from 'helpers';
-import { DateBlock, PriceBlock } from 'components/common';
+import { Button, DateBlock, PriceBlock } from 'components/common';
 import { IProduct } from 'types';
 
 interface IProductItem {
   product: IProduct;
   isShort?: boolean;
+  handleDeleteProduct: () => void;
 }
 
-const ProductItem: React.FC<IProductItem> = ({ product, isShort }) => {
+const ProductItem: React.FC<IProductItem> = ({ product, isShort, handleDeleteProduct }) => {
   const indicatorClasses = classNames('w-4 h-4 rounded-full ', {
     'bg-accent-main': product.isAvailable,
     'bg-biege-main': !product.isAvailable,
@@ -59,8 +60,9 @@ const ProductItem: React.FC<IProductItem> = ({ product, isShort }) => {
       )}
 
       {product.isNew && <p>New</p>}
-
-      <HiTrash size="20" />
+      <Button isRounded onClick={handleDeleteProduct}>
+        <HiTrash size="20" />
+      </Button>
     </div>
   );
 };

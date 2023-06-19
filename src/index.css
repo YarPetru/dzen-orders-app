@@ -57,6 +57,10 @@
     @apply w-12 h-12 flex items-center justify-center border border-grey-main rounded-full hover:border-accent-light transition-all text-grey-dark hover:text-accent-main;
   }
 
+  .classic-button {
+    @apply flex items-center justify-center px-5 py-3 bg-white border rounded-lg  border-grey-main text-grey-dark hover:text-accent-main hover:shadow-md active:shadow-sm transition-all;
+  }
+
   .error-validation {
     @apply text-xs text-blue-main ml-3;
   }

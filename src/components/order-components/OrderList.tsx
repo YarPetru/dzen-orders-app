@@ -6,12 +6,14 @@ import { getProducts } from 'store/products';
 import { setCurrentOrder } from 'store/orders/orders-slice';
 import OrderItem from './OrderItem';
 import OrderDetails from './OrderDetails';
-import { Skeleton } from 'components/common';
+import { Skeleton, Modal, Button } from 'components/common';
 import { IOrder } from 'types';
-import { calculateTotal } from 'helpers';
+import { calculateTotal, totalProductAmount } from 'helpers';
 
 const OrderList: React.FC = () => {
   const [openDetails, setOpenDetails] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
   const listWrapperClasses = classNames('relative w-full items-start gap-6 ', {});
   const listClasses = classNames('flex flex-col gap-6 transition-all', {
     'w-full': !openDetails,
@@ -24,7 +26,7 @@ const OrderList: React.FC = () => {
 
   const currentOrder = useAppSelector(getCurrentOrder);
 
-  const onOrderClick = (current: IOrder) => {
+  const handleOpenDetails = (current: IOrder) => {
     if (openDetails) {
       setOpenDetails(false);
       dispatch(setCurrentOrder(null));
@@ -34,13 +36,24 @@ const OrderList: React.FC = () => {
     }
   };
 
+  const handleDeleteOrder = (current: IOrder) => {
+    dispatch(setCurrentOrder(current));
+    setOpenModal(true);
+  };
+
   const onCloseDetails = () => {
     setOpenDetails(false);
     dispatch(setCurrentOrder(null));
   };
 
-  const totalProductAmount = (order: IOrder) => {
-    return products.reduce((amount, prod) => (prod.order === order.id ? (amount += 1) : amount), 0);
+  const onDeleteConfirmClick = () => {
+    alert('Delete from DB');
+    setOpenModal(false);
+  };
+
+  const closeModal = () => {
+    setOpenModal(false);
+    dispatch(setCurrentOrder(null));
   };
 
   let renderedOrders;
@@ -54,20 +67,30 @@ const OrderList: React.FC = () => {
       <OrderItem
         key={order.id}
         order={order}
-        productAmount={totalProductAmount(order)}
+        productAmount={totalProductAmount(products, order)}
         totalUsd={calculateTotal(products, order, 'USD')}
         totalUah={calculateTotal(products, order, 'UAH')}
-        onClick={() => onOrderClick(order)}
+        handleOpenDetails={() => handleOpenDetails(order)}
+        handleDeleteOrder={() => handleDeleteOrder(order)}
         isOpenDetails={openDetails}
       />
     ));
   }
 
   return (
-    <div className={listWrapperClasses}>
-      <OrderDetails order={currentOrder} closeDetails={onCloseDetails} isVisible={openDetails} />
-      <ul className={listClasses}>{renderedOrders}</ul>
-    </div>
+    <>
+      <div className={listWrapperClasses}>
+        <ul className={listClasses}>{renderedOrders}</ul>
+        <OrderDetails order={currentOrder} closeDetails={onCloseDetails} isVisible={openDetails} />
+      </div>
+      <Modal isOpen={openModal} onClose={closeModal}>
+        <h2>Are you shure?</h2>
+        <div className="mt-6 flex items-center gap-10">
+          <Button onClick={onDeleteConfirmClick}>Delete</Button>
+          <Button onClick={closeModal}>Cancel</Button>
+        </div>
+      </Modal>
+    </>
   );
 };
 

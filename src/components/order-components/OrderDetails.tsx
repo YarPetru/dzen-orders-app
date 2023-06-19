@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { HiX, HiPlusCircle } from 'react-icons/hi';
-import { RoundedButton } from 'components/common';
+import { Button } from 'components/common';
 import { ProductList } from 'components/product-components';
 import { IOrder } from 'types';
 
@@ -30,13 +30,14 @@ const OrderDetails: React.FC<IOrderDetails> = ({ order, isVisible, closeDetails 
 
       <ProductList orderID={order?.id} isForDetails={true} />
 
-      <RoundedButton
+      <Button
         className="absolute -top-[24px] -right-[24px] bg-white z-50"
         isShady
+        isRounded
         onClick={closeDetails}
       >
         <HiX size={24} />
-      </RoundedButton>
+      </Button>
     </div>
   );
 };
