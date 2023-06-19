@@ -29,24 +29,22 @@ const Modal: React.FC<IModal> = ({ isOpen, onClose, children }) => {
   };
 
   return !isOpen ? null : (
-    <>
-      <div
-        className="fixed top-0 left-0 w-screen h-screen backdrop-blur-md z-50"
-        onClick={handleOverlayClick}
-      >
-        <div className="relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-12 max-h-5/6 w-1/2 bg-biege-light rounded-lg shadow-2xl text-center flex flex-col items-center gap-12">
-          {children}
-          <Button
-            className="absolute -top-[24px] -right-[24px] bg-white z-40"
-            isShady
-            isRounded
-            onClick={onClose}
-          >
-            <HiX size={24} />
-          </Button>
-        </div>
+    <div
+      className="fixed top-0 left-0 w-screen h-screen backdrop-blur-md z-50"
+      onClick={handleOverlayClick}
+    >
+      <div className="relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-12 max-h-5/6 w-1/2 bg-biege-light rounded-lg shadow-2xl text-center flex flex-col items-center gap-12">
+        {children}
+        <Button
+          className="absolute -top-[24px] -right-[24px] bg-white z-40"
+          isShady
+          isRounded
+          onClick={onClose}
+        >
+          <HiX size={24} />
+        </Button>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -59,7 +59,7 @@ const OrderItem: React.FC<IOrderItem> = ({
       {isOpenDetails && currentOrder?.id === order.id && (
         <div
           onClick={handleOpenDetails}
-          className="absolute right-0 top-0 h-full flex items-center justify-center cursor-pointer bg-biege-main text-white hover:bg-grey-main transition-all"
+          className="absolute right-0 top-0 h-full flex items-center justify-center cursor-pointer bg-biege-main text-white hover:bg-biege-dark transition-all"
         >
           <HiChevronRight />
         </div>

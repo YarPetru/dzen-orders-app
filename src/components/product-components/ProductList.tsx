@@ -79,18 +79,20 @@ const ProductList: React.FC<IProductList> = ({ isForDetails, orderID }) => {
   }, [dispatch]);
 
   return (
-    <div className="w-full flex-col-start gap-6 ">
-      {!isForDetails && (
-        <ProductFilter
-          totalQuantity={filteredProducts.length}
-          types={typesArray}
-          currentType={currentType}
-          setCurrentType={setCurrentType}
-        />
-      )}
+    <>
+      <div className="w-full flex-col-start gap-6 ">
+        {!isForDetails && (
+          <ProductFilter
+            totalQuantity={filteredProducts.length}
+            types={typesArray}
+            currentType={currentType}
+            setCurrentType={setCurrentType}
+          />
+        )}
 
-      <div className={listWrapperClasses}>
-        <ul className={listClasses}>{renderedProducts}</ul>
+        <div className={listWrapperClasses}>
+          <ul className={listClasses}>{renderedProducts}</ul>
+        </div>
       </div>
       <Modal isOpen={openModal} onClose={closeModal}>
         <h2>Are you shure?</h2>
@@ -99,7 +101,7 @@ const ProductList: React.FC<IProductList> = ({ isForDetails, orderID }) => {
           <Button onClick={closeModal}>Cancel</Button>
         </div>
       </Modal>
-    </div>
+    </>
   );
 };
 

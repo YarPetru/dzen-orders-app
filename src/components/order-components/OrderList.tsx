@@ -9,6 +9,7 @@ import OrderDetails from './OrderDetails';
 import { Skeleton, Modal, Button } from 'components/common';
 import { IOrder } from 'types';
 import { calculateTotal, totalProductAmount } from 'helpers';
+import AddButton from 'components/common/AddButton';
 
 const OrderList: React.FC = () => {
   const [openDetails, setOpenDetails] = useState<boolean>(false);
@@ -79,6 +80,11 @@ const OrderList: React.FC = () => {
 
   return (
     <>
+      <header className="mb-10 flex-row-aligned gap-6">
+        <AddButton />
+        <h2 className="text-left">Orders / {orders.length}</h2>
+      </header>
+
       <div className={listWrapperClasses}>
         <ul className={listClasses}>{renderedOrders}</ul>
         <OrderDetails order={currentOrder} closeDetails={onCloseDetails} isVisible={openDetails} />

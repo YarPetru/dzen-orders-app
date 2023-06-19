@@ -21,7 +21,13 @@ const ProductFilter: React.FC<IProductFilter> = ({
   return (
     <div className="flex-row-aligned gap-12">
       <h2>Products / {totalQuantity}</h2>
-      <select name="select" value={currentType} defaultValue="" onChange={handleTypeChange}>
+      <select
+        name="select"
+        value={currentType}
+        defaultValue=""
+        onChange={handleTypeChange}
+        className="px-4 py-2 rounded-sm"
+      >
         <option value="">select the type</option>
         {types?.map(type => (
           <option key={type} value={type}>

@@ -16,7 +16,7 @@
   }
 
   body {
-    @apply font-NotoSans leading-normal text-sm text-black;
+    @apply font-NotoSans leading-normal text-sm text-black bg-grey-light;
   }
 
   h1 {
@@ -42,7 +42,7 @@
   }
 
   .item {
-    @apply w-full p-4 flex items-center justify-between gap-4 shadow-md rounded-md;
+    @apply w-full p-4 flex items-center justify-between gap-4 bg-white shadow-md rounded-md;
   }
 
   .section {

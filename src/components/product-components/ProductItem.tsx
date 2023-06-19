@@ -38,6 +38,8 @@ const ProductItem: React.FC<IProductItem> = ({ product, isShort, handleDeletePro
         <p className="text-black">Repaired</p>
       )}
 
+      {product.isNew && <p>New</p>}
+
       {!isShort && (
         <>
           <div className="flex flex-col gap-0">
@@ -56,13 +58,11 @@ const ProductItem: React.FC<IProductItem> = ({ product, isShort, handleDeletePro
           <p>Author title</p>
           <p>Order title</p>
           <DateBlock date={date} />
+          <Button isRounded onClick={handleDeleteProduct}>
+            <HiTrash size="20" />
+          </Button>
         </>
       )}
-
-      {product.isNew && <p>New</p>}
-      <Button isRounded onClick={handleDeleteProduct}>
-        <HiTrash size="20" />
-      </Button>
     </div>
   );
 };

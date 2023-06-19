@@ -4,6 +4,7 @@ import { HiX, HiPlusCircle } from 'react-icons/hi';
 import { Button } from 'components/common';
 import { ProductList } from 'components/product-components';
 import { IOrder } from 'types';
+import AddButton from 'components/common/AddButton';
 
 interface IOrderDetails {
   order: IOrder | null;
@@ -23,10 +24,7 @@ const OrderDetails: React.FC<IOrderDetails> = ({ order, isVisible, closeDetails 
     <div className={wrapperClasses}>
       <h2>{order?.title}</h2>
 
-      <div className="text-accent-main">
-        <HiPlusCircle />
-        <p>Add product</p>
-      </div>
+      <AddButton isForProducts />
 
       <ProductList orderID={order?.id} isForDetails={true} />
 

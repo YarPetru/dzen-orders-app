@@ -24,7 +24,7 @@ module.exports = {
     },
     colors: {
       transparent: 'transparent',
-      white: '#FEF9F3',
+      white: '#FFF',
       black: '#201C1B',
       // black: '#141413',
       accent: {
@@ -40,6 +40,7 @@ module.exports = {
       biege: {
         main: '#E8D9CA',
         light: '#f8f4ef',
+        dark: '#a2988d',
       },
     },
     extend: {
