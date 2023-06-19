@@ -66,7 +66,7 @@ const OrderList: React.FC = () => {
   } else if (orders) {
     renderedOrders = orders?.map(order => (
       <OrderItem
-        key={order.id}
+        key={order._id}
         order={order}
         productAmount={totalProductAmount(products, order)}
         totalUsd={calculateTotal(products, order, 'USD')}

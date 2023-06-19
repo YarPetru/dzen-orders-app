@@ -26,7 +26,7 @@ const OrderDetails: React.FC<IOrderDetails> = ({ order, isVisible, closeDetails 
 
       <AddButton isForProducts />
 
-      <ProductList orderID={order?.id} isForDetails={true} />
+      <ProductList orderID={order?._id} isForDetails={true} />
 
       <Button
         className="absolute -top-[24px] -right-[24px] bg-white z-50"

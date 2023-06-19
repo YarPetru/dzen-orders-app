@@ -38,7 +38,7 @@ const ProductItem: React.FC<IProductItem> = ({ product, isShort, handleDeletePro
         <p className="text-black">Repaired</p>
       )}
 
-      {product.isNew && <p>New</p>}
+      {product.isNewProduct && <p>New</p>}
 
       {!isShort && (
         <>

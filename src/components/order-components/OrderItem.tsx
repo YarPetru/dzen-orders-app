@@ -56,7 +56,7 @@ const OrderItem: React.FC<IOrderItem> = ({
         </Button>
       )}
 
-      {isOpenDetails && currentOrder?.id === order.id && (
+      {isOpenDetails && currentOrder?._id === order._id && (
         <div
           onClick={handleOpenDetails}
           className="absolute right-0 top-0 h-full flex items-center justify-center cursor-pointer bg-biege-main text-white hover:bg-biege-dark transition-all"

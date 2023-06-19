@@ -5,9 +5,9 @@ export interface IPrice {
 }
 
 export interface IProduct {
-  id: number;
+  _id: string;
   serialNumber: number;
-  isNew: 1 | 0;
+  isNewProduct: 1 | 0;
   isAvailable: 1 | 0;
   photo: string;
   title: string;
@@ -18,12 +18,12 @@ export interface IProduct {
     end: Date;
   };
   price: [IPrice, IPrice];
-  order: number; //one of ids of the orders
+  order: string; //one of ids of the orders
   date: Date;
 }
 
 export interface IOrder {
-  id: number;
+  _id: string;
   title: string;
   date: Date;
   description: string;
