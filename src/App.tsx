@@ -1,16 +1,13 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { Route, Routes, Navigate } from 'react-router';
-// import BeatLoader from 'react-spinners/BeatLoader';
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { fetchProducts } from 'store/products';
 import { fetchOrders } from 'store/orders';
-import { Layout } from 'components/layout';
 import { useAppDispatch } from 'hooks';
+import { Layout } from 'components/layout';
 
-const HomePage = lazy(() => import('./pages/HomePage'));
-const OrdersPage = lazy(() => import('./pages/OrdersPage'));
-const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const HomePage = lazy(() => import('pages/HomePage'));
+const OrdersPage = lazy(() => import('pages/OrdersPage'));
+const ProductsPage = lazy(() => import('pages/ProductsPage'));
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
