@@ -8,9 +8,7 @@ import { store, persistor } from './store';
 import App from './App';
 import './index.css';
 
-const container = document.getElementById('root')!;
-const root = createRoot(container);
-
+const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
     <IconContext.Provider value={{ size: '40px' }}>
