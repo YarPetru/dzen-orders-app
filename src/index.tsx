@@ -12,15 +12,15 @@ const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
-  // <React.StrictMode>
-  <PersistGate persistor={persistor}>
-    <Provider store={store}>
-      <BrowserRouter basename="/">
-        <IconContext.Provider value={{ size: '40px' }}>
-          <App />
-        </IconContext.Provider>
-      </BrowserRouter>
-    </Provider>
-  </PersistGate>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <IconContext.Provider value={{ size: '40px' }}>
+      <PersistGate persistor={persistor}>
+        <Provider store={store}>
+          <BrowserRouter basename="/">
+            <App />
+          </BrowserRouter>
+        </Provider>
+      </PersistGate>
+    </IconContext.Provider>
+  </React.StrictMode>
 );
