@@ -15,7 +15,8 @@ const App: React.FC = () => {
   useEffect(() => {
     dispatch(fetchOrders());
     dispatch(fetchProducts());
-  }, [dispatch]);
+  });
+
   return (
     <>
       <Suspense fallback={<h2>LOADING...</h2>}>
