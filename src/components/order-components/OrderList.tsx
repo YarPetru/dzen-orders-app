@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
-import { getCurrentOrder, getOrders } from 'store/orders';
-import { getProducts } from 'store/products';
+import { getCurrentOrder, getOrders, fetchOrders } from 'store/orders';
+import { getProducts, fetchProducts } from 'store/products';
 import { setCurrentOrder } from 'store/orders/orders-slice';
 import OrderItem from './OrderItem';
 import OrderDetails from './OrderDetails';
@@ -23,7 +23,11 @@ const OrderList: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const { data: orders, isLoading, error } = useAppSelector(getOrders);
-  const { data: products } = useAppSelector(getProducts);
+  const {
+    data: products,
+    // isLoading: isProdLoading,
+    // error: prodError,
+  } = useAppSelector(getProducts);
 
   const currentOrder = useAppSelector(getCurrentOrder);
 
@@ -77,6 +81,11 @@ const OrderList: React.FC = () => {
       />
     ));
   }
+
+  useEffect(() => {
+    dispatch(fetchOrders());
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   return (
     <>
