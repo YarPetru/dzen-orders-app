@@ -7,8 +7,8 @@ const Layout: React.FC = () => {
   return (
     <>
       <TopMenu />
-      <MainContent />
       <NavigationMenu />
+      <MainContent></MainContent>
     </>
   );
 };
