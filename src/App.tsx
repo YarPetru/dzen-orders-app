@@ -5,9 +5,9 @@ import { fetchOrders } from 'store/orders';
 import { useAppDispatch } from 'hooks';
 import { Layout } from 'components/layout';
 
-const HomePage = lazy(() => import('pages/HomePage'));
-const OrdersPage = lazy(() => import('pages/OrdersPage'));
-const ProductsPage = lazy(() => import('pages/ProductsPage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const OrdersPage = lazy(() => import('./pages/OrdersPage'));
+const ProductsPage = lazy(() => import('./pages/ProductsPage'));
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
