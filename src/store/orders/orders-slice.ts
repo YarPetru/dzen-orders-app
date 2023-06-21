@@ -43,7 +43,6 @@ const ordersSlice = createSlice({
       state.isLoading = false;
       state.data.push(action.payload);
     });
-
     builder.addCase(addOrder.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload ? String(action.payload) : 'Unknown error';

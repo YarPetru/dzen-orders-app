@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
-import { fetchProducts, getProducts } from 'store/products';
+import { fetchProducts, getProducts, removeProduct } from 'store/products';
 import ProductFilter from './ProductFilter';
 import ProductItem from './ProductItem';
-import { Skeleton, Modal, Button } from 'components/common';
+import { Skeleton, Modal, DeleteConfirmation } from 'components/common';
 import { IProduct } from 'types';
 
 interface IProductList {
@@ -14,11 +14,8 @@ interface IProductList {
 
 const ProductList: React.FC<IProductList> = ({ isForDetails, orderID }) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
-
-  const listWrapperClasses = classNames('w-full', {});
-  const listClasses = classNames('w-full flex flex-col gap-6', {});
-
   const [currentType, setCurrentType] = useState<string>('');
+  const [currentProduct, setCurrentProduct] = useState<IProduct | null>(null);
 
   const dispatch = useAppDispatch();
   const { data: products, isLoading, error } = useAppSelector(getProducts);
@@ -34,6 +31,7 @@ const ProductList: React.FC<IProductList> = ({ isForDetails, orderID }) => {
   });
 
   const handleDeleteProduct = (current: IProduct) => {
+    setCurrentProduct(current);
     setOpenModal(true);
   };
 
@@ -41,9 +39,10 @@ const ProductList: React.FC<IProductList> = ({ isForDetails, orderID }) => {
     setOpenModal(false);
   };
 
-  const onDeleteConfirmClick = () => {
-    alert('Delete from DB');
+  const onDeleteConfirmClick = async () => {
+    await dispatch(removeProduct(currentProduct!));
     setOpenModal(false);
+    setCurrentProduct(null);
   };
 
   const typesArray = products
@@ -74,6 +73,9 @@ const ProductList: React.FC<IProductList> = ({ isForDetails, orderID }) => {
       );
   }
 
+  const listWrapperClasses = classNames('w-full', {});
+  const listClasses = classNames('w-full flex flex-col gap-6', {});
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
@@ -95,11 +97,11 @@ const ProductList: React.FC<IProductList> = ({ isForDetails, orderID }) => {
         </div>
       </div>
       <Modal isOpen={openModal} onClose={closeModal}>
-        <h2>Are you shure?</h2>
-        <div className="mt-6 flex items-center gap-10">
-          <Button onClick={onDeleteConfirmClick}>Delete</Button>
-          <Button onClick={closeModal}>Cancel</Button>
-        </div>
+        <DeleteConfirmation
+          isPending={isLoading}
+          onDeleteConfirmClick={onDeleteConfirmClick}
+          closeDeleteModal={closeModal}
+        />
       </Modal>
     </>
   );

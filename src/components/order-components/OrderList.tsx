@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
-import { MoonLoader } from 'react-spinners';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { getCurrentOrder, getOrders, fetchOrders, removeOrder } from 'store/orders';
 import { getProducts, fetchProducts } from 'store/products';
 import { setCurrentOrder } from 'store/orders/orders-slice';
 import OrderItem from './OrderItem';
 import OrderDetails from './OrderDetails';
-import { Skeleton, Modal, Button, AddButton } from 'components/common';
+import { Skeleton, Modal, AddButton, DeleteConfirmation } from 'components/common';
 import { IOrder } from 'types';
 import { calculateTotal, totalProductAmount } from 'helpers';
 import AddOrderForm from './AddOrderForm';
@@ -103,17 +102,11 @@ const OrderList: React.FC = () => {
       </div>
 
       <Modal isOpen={openDeleteModal} onClose={closeDeleteModal}>
-        {isLoading ? (
-          <MoonLoader color="#2E7758" size="60px" />
-        ) : (
-          <>
-            <h2>Are you shure?</h2>
-            <div className="mt-6 flex items-center gap-10">
-              <Button onClick={onDeleteConfirmClick}>Delete</Button>
-              <Button onClick={closeDeleteModal}>Cancel</Button>
-            </div>
-          </>
-        )}
+        <DeleteConfirmation
+          isPending={isLoading}
+          onDeleteConfirmClick={onDeleteConfirmClick}
+          closeDeleteModal={closeDeleteModal}
+        />
       </Modal>
 
       <Modal isOpen={openAddModal} onClose={closeAddModal}>

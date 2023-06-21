@@ -18,7 +18,7 @@ export interface IProduct {
     end: Date;
   };
   price: [IPrice, IPrice];
-  order: string; //one of ids of the orders
+  order: string;
   date: Date;
 }
 
