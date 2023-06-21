@@ -24,7 +24,6 @@ const ProductFilter: React.FC<IProductFilter> = ({
       <select
         name="select"
         value={currentType}
-        defaultValue=""
         onChange={handleTypeChange}
         className="px-4 py-2 rounded-sm"
       >
