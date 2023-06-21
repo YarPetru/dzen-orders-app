@@ -1,4 +1,4 @@
-## This app deployed on [Netlify](dzen-orders.netlify.app). Follow the link to use
+## This app deployed on [Netlify](https://dzen-orders.netlify.app). Follow the link to use
 
 ## To start dev mode immediately
 
