@@ -1,9 +1,9 @@
 import React, { lazy, Suspense } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 // import { fetchProducts } from 'store/products';
 // import { fetchOrders } from 'store/orders';
 // import { useAppDispatch } from 'hooks';
-import { Layout } from 'components/layout';
+// import { Layout } from 'components/layout';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const OrdersPage = lazy(() => import('./pages/OrdersPage'));
