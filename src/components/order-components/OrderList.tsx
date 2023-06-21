@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
+import { MoonLoader } from 'react-spinners';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
-import { getCurrentOrder, getOrders, fetchOrders } from 'store/orders';
+import { getCurrentOrder, getOrders, fetchOrders, removeOrder } from 'store/orders';
 import { getProducts, fetchProducts } from 'store/products';
 import { setCurrentOrder } from 'store/orders/orders-slice';
 import OrderItem from './OrderItem';
 import OrderDetails from './OrderDetails';
-import { Skeleton, Modal, Button } from 'components/common';
+import { Skeleton, Modal, Button, AddButton } from 'components/common';
 import { IOrder } from 'types';
 import { calculateTotal, totalProductAmount } from 'helpers';
-import AddButton from 'components/common/AddButton';
+import AddOrderForm from './AddOrderForm';
 
 const OrderList: React.FC = () => {
   const [openDetails, setOpenDetails] = useState<boolean>(false);
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
+  const [openAddModal, setOpenAddModal] = useState<boolean>(false);
 
   const listWrapperClasses = classNames('relative w-full items-start gap-6 ', {});
   const listClasses = classNames('flex flex-col gap-6 transition-all', {
@@ -23,11 +25,7 @@ const OrderList: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const { data: orders, isLoading, error } = useAppSelector(getOrders);
-  const {
-    data: products,
-    // isLoading: isProdLoading,
-    // error: prodError,
-  } = useAppSelector(getProducts);
+  const { data: products } = useAppSelector(getProducts);
 
   const currentOrder = useAppSelector(getCurrentOrder);
 
@@ -43,7 +41,7 @@ const OrderList: React.FC = () => {
 
   const handleDeleteOrder = (current: IOrder) => {
     dispatch(setCurrentOrder(current));
-    setOpenModal(true);
+    setOpenDeleteModal(true);
   };
 
   const onCloseDetails = () => {
@@ -51,14 +49,19 @@ const OrderList: React.FC = () => {
     dispatch(setCurrentOrder(null));
   };
 
-  const onDeleteConfirmClick = () => {
-    alert('Delete from DB');
-    setOpenModal(false);
+  const onDeleteConfirmClick = async () => {
+    await dispatch(removeOrder(currentOrder!));
+    setOpenDeleteModal(false);
+    dispatch(setCurrentOrder(null));
   };
 
-  const closeModal = () => {
-    setOpenModal(false);
+  const closeDeleteModal = () => {
+    setOpenDeleteModal(false);
     dispatch(setCurrentOrder(null));
+  };
+
+  const closeAddModal = () => {
+    setOpenAddModal(false);
   };
 
   let renderedOrders;
@@ -90,7 +93,7 @@ const OrderList: React.FC = () => {
   return (
     <>
       <header className="mb-10 flex-row-aligned gap-6">
-        <AddButton />
+        <AddButton onClick={() => setOpenAddModal(true)} />
         <h2 className="text-left">Orders / {orders.length}</h2>
       </header>
 
@@ -98,12 +101,23 @@ const OrderList: React.FC = () => {
         <ul className={listClasses}>{renderedOrders}</ul>
         <OrderDetails order={currentOrder} closeDetails={onCloseDetails} isVisible={openDetails} />
       </div>
-      <Modal isOpen={openModal} onClose={closeModal}>
-        <h2>Are you shure?</h2>
-        <div className="mt-6 flex items-center gap-10">
-          <Button onClick={onDeleteConfirmClick}>Delete</Button>
-          <Button onClick={closeModal}>Cancel</Button>
-        </div>
+
+      <Modal isOpen={openDeleteModal} onClose={closeDeleteModal}>
+        {isLoading ? (
+          <MoonLoader color="#2E7758" size="60px" />
+        ) : (
+          <>
+            <h2>Are you shure?</h2>
+            <div className="mt-6 flex items-center gap-10">
+              <Button onClick={onDeleteConfirmClick}>Delete</Button>
+              <Button onClick={closeDeleteModal}>Cancel</Button>
+            </div>
+          </>
+        )}
+      </Modal>
+
+      <Modal isOpen={openAddModal} onClose={closeAddModal}>
+        <AddOrderForm closeModal={closeAddModal} />
       </Modal>
     </>
   );

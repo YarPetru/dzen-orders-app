@@ -45,10 +45,6 @@
     @apply w-full p-4 flex items-center justify-between gap-4 bg-white shadow-md rounded-md;
   }
 
-  .section {
-    @apply p-8 bg-grey-light rounded-md shadow-md;
-  }
-
   .subparagraph {
     @apply text-xs text-grey-dark;
   }
@@ -62,7 +58,7 @@
   }
 
   .error-validation {
-    @apply text-xs text-blue-main ml-3;
+    @apply text-xs text-accent-main ml-3;
   }
 
   .text-input {

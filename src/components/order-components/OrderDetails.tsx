@@ -24,7 +24,7 @@ const OrderDetails: React.FC<IOrderDetails> = ({ order, isVisible, closeDetails 
     <div className={wrapperClasses}>
       <h2>{order?.title}</h2>
 
-      <AddButton isForProducts />
+      <AddButton isForProducts onClick={() => console.log('open modal')} />
 
       <ProductList orderID={order?._id} isForDetails={true} />
 

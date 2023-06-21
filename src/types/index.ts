@@ -23,8 +23,8 @@ export interface IProduct {
 }
 
 export interface IOrder {
-  _id: string;
+  _id?: string;
   title: string;
-  date: Date;
+  date: Date | string;
   description: string;
 }
