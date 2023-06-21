@@ -3,8 +3,9 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { nanoid } from '@reduxjs/toolkit';
 import { IOrder } from 'types';
+import BASE_URL from 'constants';
 
-axios.defaults.baseURL = 'https://dzen-orders-back.onrender.com/api/';
+axios.defaults.baseURL = String(BASE_URL);
 
 export const fetchOrders = createAsyncThunk('orders/fetch', async () => {
   const res = await axios.get('/orders');
