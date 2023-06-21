@@ -21,12 +21,12 @@ const App: React.FC = () => {
     <>
       <Suspense fallback={<h2>LOADING...</h2>}>
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/orders" element={<OrdersPage />} />
-            <Route path="/products" element={<ProductsPage />} />
-          </Route>
-          <Route path="/*" element={<Navigate to="/" />} />
+          {/* <Route path="/" element={<Layout />}> */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="orders" element={<OrdersPage />} />
+          <Route path="products" element={<ProductsPage />} />
+          {/* </Route> */}
+          {/* <Route path="/*" element={<Navigate to="/" />} /> */}
         </Routes>
       </Suspense>
     </>
